@@ -1,0 +1,7 @@
+[build-system]
+requires = ["fastapi[all]","uvicorn","httpx","pydantic-settings"]
+build-backend = "setuptools.build_meta"
+
+[project]
+description = "Backend for Monobank Course App"
+requires-python = ">=3.12"
