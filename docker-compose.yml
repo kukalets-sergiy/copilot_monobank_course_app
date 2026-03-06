@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    environment:
+      - CACHE_TTL_SECONDS=60
+      - REQUEST_TIMEOUT_SECONDS=10
+      - MONO_CURRENCY_URL=https://api.monobank.ua/bank/currency
+    ports:
+      - "8000:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8000
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
