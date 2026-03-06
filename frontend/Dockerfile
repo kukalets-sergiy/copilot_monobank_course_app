@@ -1,12 +1,14 @@
-# Frontend Dockerfile
-FROM node:latest
+FROM node:20-alpine
 
+# Set the working directory
 WORKDIR /app
 
-COPY package.json .
-COPY package-lock.json .
+# Copy package.json and package-lock.json (if it exists)
+COPY package.json ./
+COPY package-lock.json* ./
 
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD [ "npm", "run", "dev" ]
+# Expose port 5173
+EXPOSE 5173
+
+# Run the application
+CMD [ "npm", "run", "dev", "--", "--host=0.0.0.0", "--port=5173" ]
